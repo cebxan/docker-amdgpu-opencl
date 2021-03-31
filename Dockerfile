@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ America/Caracas
 
 LABEL Name=amdgpu-legacy
-LABEL Version=0.1
+LABEL Version=0.2
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     ca-certificates \
@@ -14,7 +14,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     xz-utils \
     libpci3
 
-FROM base AS amdgpu-legacy-base
+FROM base
 ARG AMD_SITE_URL="https://drivers.amd.com/drivers/linux/"
 ARG AMDGPU_VERSION="amdgpu-pro-20.45-1188099-ubuntu-20.04"
 
