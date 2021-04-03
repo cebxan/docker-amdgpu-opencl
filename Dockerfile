@@ -12,7 +12,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     tzdata \
     curl \
     xz-utils \
-    libpci3
+    libpci3 \
+    initramfs-tools
 
 FROM base
 ARG AMD_SITE_URL="https://drivers.amd.com/drivers/linux/"
@@ -20,5 +21,5 @@ ARG AMDGPU_VERSION="amdgpu-pro-20.45-1188099-ubuntu-20.04"
 
 RUN curl --referer ${AMD_SITE_URL} -O ${AMD_SITE_URL}${AMDGPU_VERSION}.tar.xz \
     && tar -Jxvf ${AMDGPU_VERSION}.tar.xz \
-    && ${AMDGPU_VERSION}/amdgpu-install -y --opencl=legacy --headless --no-dkms --no-32 \
+    && ${AMDGPU_VERSION}/amdgpu-install -y --opencl=legacy,rocr --headless --no-dkms --no-32 \
     && rm -rf amdgpu-pro-* /var/opt/amdgpu-pro-local /var/lib/apt/lists/*
