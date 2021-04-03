@@ -12,7 +12,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     tzdata \
     curl \
     xz-utils \
-    libpci3
+    libpci3 \
+    initramfs-tools
 
 FROM base
 ARG AMD_SITE_URL="https://drivers.amd.com/drivers/linux/"
