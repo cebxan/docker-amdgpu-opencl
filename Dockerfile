@@ -4,8 +4,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ENV TZ America/Caracas
 
-LABEL Name=amdgpu-legacy
-LABEL Version=0.1
+LABEL Name=amdgpu-opencl
+LABEL Version=1
+LABEL maintainer="Carlos Berroteran (cebxan)"
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
     ca-certificates \
@@ -14,9 +15,14 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     xz-utils \
     libpci3
 
-FROM base AS amdgpu-legacy-base
+FROM base
+
 ARG AMD_SITE_URL="https://drivers.amd.com/drivers/linux/"
-ARG AMDGPU_VERSION="amdgpu-pro-20.45-1188099-ubuntu-20.04"
+ARG PREFIX="amdgpu-pro-"
+ARG POSTFIX="-ubuntu-20.04"
+ARG VERSION_MAJOR="20.50"
+ARG VERSION_MINOR="1234664"
+ARG AMDGPU_VERSION="${PREFIX}${VERSION_MAJOR}-${VERSION_MINOR}${POSTFIX}"
 
 RUN curl --referer ${AMD_SITE_URL} -O ${AMD_SITE_URL}${AMDGPU_VERSION}.tar.xz \
     && tar -Jxvf ${AMDGPU_VERSION}.tar.xz \
