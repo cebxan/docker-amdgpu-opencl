@@ -1,4 +1,4 @@
-# Docker base image with AMDGPU OpenCL drivers
+# Docker AMDGPU OpenCL image
 
 This Docker image is based on Ubuntu 20.04 and was compiled with support for legacy GPUs (Polaris and older) and ROCr (Vega and newer)
 
