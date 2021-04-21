@@ -46,6 +46,10 @@ The TZ environment variable is available to set your desired timezone.
 
 No default command is defined because it's intended to be used as a base for other images.
 
+## Support
+
+This has only been tested with a **RX 580**. If you can confirm other GPUs, please let me know so I can create a list of tested cards.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
