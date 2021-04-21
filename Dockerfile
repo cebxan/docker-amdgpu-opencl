@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ America/Caracas
 
 LABEL Name=amdgpu-opencl
-LABEL Version=1
+LABEL Version=20.10
 LABEL maintainer="Carlos Berroteran (cebxan)"
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
@@ -13,7 +13,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
     tzdata \
     curl \
     xz-utils \
-    libpci3
+    libpci3 \
+    initramfs-tools
 
 FROM base
 
@@ -24,7 +25,8 @@ ARG VERSION_MAJOR="21.10"
 ARG VERSION_MINOR="1247438"
 ARG AMDGPU_VERSION="${PREFIX}${VERSION_MAJOR}-${VERSION_MINOR}${POSTFIX}"
 
-RUN curl --referer ${AMD_SITE_URL} -O ${AMD_SITE_URL}${AMDGPU_VERSION}.tar.xz \
-    && tar -Jxvf ${AMDGPU_VERSION}.tar.xz \
-    && ${AMDGPU_VERSION}/amdgpu-install -y --opencl=legacy --headless --no-dkms --no-32 \
+RUN curl --referer ${AMD_SITE_URL} -O ${AMD_SITE_URL}${AMDGPU_VERSION}.tar.xz
+
+RUN tar -Jxvf ${AMDGPU_VERSION}.tar.xz \
+    && ${AMDGPU_VERSION}/amdgpu-install -y --opencl=rocr,legacy --headless --no-dkms --no-32 \
     && rm -rf amdgpu-pro-* /var/opt/amdgpu-pro-local /var/lib/apt/lists/*
