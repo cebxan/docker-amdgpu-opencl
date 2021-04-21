@@ -29,4 +29,4 @@ ARG AMDGPU_VERSION="${PREFIX}${VERSION_MAJOR}-${VERSION_MINOR}${POSTFIX}"
 RUN curl --referer ${AMD_SITE_URL} -O ${AMD_SITE_URL}${AMDGPU_VERSION}.tar.xz \
     && tar -Jxvf ${AMDGPU_VERSION}.tar.xz \
     && ${AMDGPU_VERSION}/amdgpu-install -y --opencl=rocr,legacy --headless --no-dkms --no-32 \
-    && rm -rf amdgpu-pro-* /var/opt/amdgpu-pro-local
+    && rm -rf amdgpu-pro-*
