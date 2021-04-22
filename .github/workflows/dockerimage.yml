@@ -9,12 +9,12 @@ jobs:
     steps:
       - name: Docker meta
         id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v1
+        uses: crazy-max/ghaction-docker-meta@v2
         with:
           images: ghcr.io/cebxan/amdgpu-opencl
-          tag-sha: true
-          tag-match: v(.*)
-          tag-match-group: 1
+          tags: |
+            type=sha
+            type=match,pattern=v(.*),group=1
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to GitHub Container Registry
