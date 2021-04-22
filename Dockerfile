@@ -28,4 +28,4 @@ WORKDIR /tmp
 RUN curl --referer ${AMD_SITE_URL} -O ${AMD_SITE_URL}${AMDGPU_VERSION}.tar.xz \
     && tar -Jxvf ${AMDGPU_VERSION}.tar.xz \
     && ${AMDGPU_VERSION}/amdgpu-install -y --opencl=pal,legacy --headless --no-dkms \
-    && rm -rf amdgpu-pro-* /var/opt/amdgpu-pro-local
+    && rm -rf amdgpu-pro-* /var/opt/amdgpu-pro-local /etc/apt/sources.list.d/amdgpu-pro-local.list
